@@ -19,12 +19,12 @@
       {% endfor %}
     </div>
     {% endfor %}
-    <button class="w3-green" type="submit">Tweet</button>
+    <button class="w3-blue" type="submit">Tweet</button>
 </form>
 <hr>
 
 {% for tweet in all_tweets %}
-<div class="w3-card-4 w3-border w3-round w3-text-light-blue">
+<div class="w3-card-4 w3-border w3-round w3-text-blue">
   <div class="w3-padding">{{tweet.text}}</div>
   <div class="w3-right w3-tiny w3-text-black w3-padding">- {{tweet.user.username}}</div>
   {% if session['user_id'] == tweet.user_id %}
