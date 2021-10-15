@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{% block title %}{{ team.team_name }}{% endblock %}</title>
+</head>
+
+<body class="w3-animate-zoom">
+
+    <!-- navigation side panel and links -->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <br>
+        <a href="/logout" class="w3-bar-item w3-button w3-text-blue">Logout</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">Fantasy Premier League</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">About</a>
+    </div>
+
+    <!-- main content -->
+    <div id="main">
+
+        <!-- img and team name -->
+        <div class="">
+            <button id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+            <div class="w3-center">
+                <h5>Fantasy Premier League Assistant Manager</h5>
+            </div>
+            <div class="w3-display-container w3-center">
+                <img src="\static\img\misc\assistant-manager-users-backround-img.png" alt="oops" style="max-height: 200px; width: 100%;">
+                <div class="w3-display-bottommiddle">
+                    <h1 class="w3-text-white w3-padding">{{ team.team_name }}</h1>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <!-- flash messaging -->
+        <div class="w3-container">
+            {% for msg in get_flashed_messages() %}
+            <div class="w3-panel w3-green w3-display-container"><span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <h3>{{ msg }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- subcontent navigation -->
+        <div class="">
+            <!-- top row buttons -->
+            <div class="w3-row w3-center w3-margin">
+
+                <a href="roster/{{user.id}}/1">
+                    <div class="w3-col w3-third w3-btn w3-ripple w3-border w3-round">
+                        <div class="">
+                            <h3>players</h3>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="w3-col w3-third w3-btn w3-ripple w3-border w3-round">
+                    <div class="">
+                        <h3>squad analysis</h3>
+                    </div>
+                </div>
+
+                <a href="league_tables/{{user.id}}">
+                    <div class="w3-col w3-third w3-btn w3-ripple w3-border w3-round">
+                        <div class="">
+                            <h3>league tables</h3>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- 2nd row buttons -->
+            <div class="w3-row w3-center w3-margin">
+
+                <a href="awards/{{user.id}}">
+                    <div class="w3-col w3-third w3-btn w3-ripple w3-border w3-round">
+                        <div class="">
+                            <h3>awards</h3>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="w3-col w3-third w3-btn w3-ripple w3-border w3-round">
+                    <div class="">
+                        <h3>team history</h3>
+                    </div>
+                </div>
+
+                <a href="/chat/{{user.id}}">
+                    <div class="w3-col w3-third w3-btn w3-ripple w3-border w3-round">
+                        <div class="">
+                            <h3>chat</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <!-- footer content -->
+    <div class="w3-bottom w3-lavender">
+        .
+    </div>
+
+    <!-- side navigation scripts -->
+    <script>
+        function w3_open() {
+            document.getElementById("main").style.marginLeft = "15%";
+            document.getElementById("mySidebar").style.width = "15%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
+        }
+
+        function w3_close() {
+            document.getElementById("main").style.marginLeft = "0%";
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("openNav").style.display = "inline-block";
+        }
+    </script>
+</body>
+
+</html>

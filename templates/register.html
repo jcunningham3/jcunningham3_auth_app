@@ -1,24 +1,42 @@
 {% extends 'base.html' %}
-{% block title %}{% endblock %}
+{% block title %}register{% endblock %}
+
 {% block content %}
-<h3>Sign Up</h3>
+<div class="w3-display-middle">
+  <div class="w3-animate-zoom">
+    <h3 class="w3-text-white">Register</h3>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <form action="/register" method="post">
+            {{ form.hidden_tag() }}
 
-<form action="/register" method="post">
-  {{ form.hidden_tag() }}
+            {% for field in form
+              if field.widget.input_type != 'hidden' %}
+              <div class="form-row">
+                <div class="col">
+                  {{ field.label }}
+                </div>
+                <div class="col">
+                    {{ field }}
+                </div>
 
-  {% for field in form
-    if field.widget.input_type != 'hidden' %}
-    <div>
-      {{ field.label }}
-      {{ field }}
-
-      {% for error in field.errors %}
-      <div class="w3-text-red w3-tiny">
-        {{ error }}
+                {% for error in field.errors %}
+                <div class="">
+                  {{ error }}
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+              <button class="btn btn-primary mb-2" type="submit">Register</button>
+          </form>
+        </div>
       </div>
-      {% endfor %}
     </div>
-    {% endfor %}
-    <button class="w3-green" type="submit">Register</button>
-</form>
+    <div class="w3-right">
+            <a href="/logon"><h5 class="w3-btn w3-ripple w3-text-white">or login</h5></a>
+        </div>
+  </div>
+</div>
+
 {% endblock %}

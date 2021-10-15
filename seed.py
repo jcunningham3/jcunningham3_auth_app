@@ -1,6 +1,6 @@
-from models import Tweet, User, db
 from app import app
+from models import Users, Team, db
 
-# create all tables
+#drop and create tables
 db.drop_all()
 db.create_all()

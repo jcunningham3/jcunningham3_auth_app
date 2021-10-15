@@ -1,0 +1,430 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{% block title %}{{ player.team_name }}{% endblock %}</title>
+</head>
+
+<body class="">
+    <style>
+        .badge {
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+
+    <!-- navigation side panel and links -->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <br>
+        <a href="/logout" class="w3-bar-item w3-button w3-text-blue">Logout</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">Fantasy Premier League</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">About</a>
+    </div>
+
+    <!-- main content -->
+    <div id="main">
+
+        <!-- img and team name -->
+        <div class="">
+            <button id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+            <div class="w3-center">
+                <h5>Fantasy Premier League Assistant Manager</h5>
+            </div>
+            <div class="w3-display-container w3-center">
+                <img src="\static\img\misc\assistant-manager-users-backround-img.png" alt="oops" style="max-height: 200px; width: 100%;">
+                <div class="w3-display-bottommiddle">
+                    <h2 class="w3-text-white w3-padding">{{ player.team_name }} Awards</h2>
+                </div>
+                <div class="w3-display-bottomleft" style="margin-left: 60px;">
+                    <a class="" href="/user/{{player.id}}">
+                        <h5 class="w3-text-white w3-padding">home</h5>
+                    </a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <!-- flash messaging -->
+        <div class="w3-container">
+            {% for msg in get_flashed_messages() %}
+            <div class="w3-panel w3-green w3-display-container"><span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <h3>{{ msg }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- award levels and prizes -->
+        <div class="w3-container">
+            <!-- rookie badegs -->
+            <div>
+                <h3>Rookie Badges</h3>
+                <!-- rookie level 1 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>create a team</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>join a classic league</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a captain</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a vice captain</div>
+                        </div>
+                    </div>
+                </div><br>
+                <!-- rookie level 2 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>complete a gameweek</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make a transfer</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>burn 4 pts</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>200</b></h5>
+                            <img src="\static\img\badges\rookie_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>top of the table</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- novice level -->
+            <div>
+                <h3>Novice Badges</h3>
+                <!-- novice level 1 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>change your team name</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make 2 transfers</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a captain</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a vice captain</div>
+                        </div>
+                    </div>
+                </div><br>
+                <!-- novice level 2 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>complete a gameweek</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make a transfer</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>burn 4 pts</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>200</b></h5>
+                            <img src="\static\img\badges\novice_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>top of the table</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- pro level -->
+            <div>
+                <h3>Pro Badges</h3>
+                <!-- pro level 1 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>change your team name</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make 2 transfers</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a captain</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a vice captain</div>
+                        </div>
+                    </div>
+                </div><br>
+                <!-- pro level 2 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>complete a gameweek</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make a transfer</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>burn 4 pts</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>200</b></h5>
+                            <img src="\static\img\badges\pro_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>top of the table</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- all-star level -->
+            <div>
+                <h3>All-star Badges</h3>
+                <!-- all-star level 1 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>change your team name</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make 2 transfers</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a captain</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a vice captain</div>
+                        </div>
+                    </div>
+                </div><br>
+                <!-- all-star level 2 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>complete a gameweek</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make a transfer</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>burn 4 pts</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>200</b></h5>
+                            <img src="\static\img\badges\all_star_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>top of the table</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- legend level -->
+            <div>
+                <h3>Legendary Badges</h3>
+                <!-- legendary level 1 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>change your team name</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make 2 transfers</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a captain</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>50</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>pick a vice captain</div>
+                        </div>
+                    </div>
+                </div><br>
+                <!-- legendary level 2 -->
+                <div class="w3-cell-row w3-center">
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>complete a gameweek</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>make a transfer</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>100</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>burn 4 pts</div>
+                        </div>
+                    </div>
+                    <div class="w3-cell">
+                        <div class="badge">
+                            <h5><b>200</b></h5>
+                            <img src="\static\img\badges\legendary_badge.png" alt="ohno!" style="width: 50%;">
+                            <div>top of the table</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+        </div>
+
+
+
+    </div>
+
+    <!-- footer content -->
+    <div class="w3-bottom w3-lavender">
+        .
+    </div>
+
+    <!-- side navigation scripts -->
+    <script>
+        function w3_open() {
+            document.getElementById("main").style.marginLeft = "15%";
+            document.getElementById("mySidebar").style.width = "15%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
+        }
+
+        function w3_close() {
+            document.getElementById("main").style.marginLeft = "0%";
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("openNav").style.display = "inline-block";
+        }
+    </script>
+</body>
+
+</html>
