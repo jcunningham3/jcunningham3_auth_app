@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body class="">
+
+    <!-- navigation side panel and links -->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <br> {% if session['user_id'] %}
+        <a href="/logout" class="w3-bar-item w3-button w3-text-blue">Logout</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">Fantasy Premier League</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">About</a> {% else %}
+        <a href="/register" class="w3-bar-item w3-button w3-text-blue">Register</a>
+        <a href="/logon" class="w3-bar-item w3-button w3-text-blue">Login</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">About</a> {% endif %}
+    </div>
+
+    <!-- navigation -->
+    <div id="main">
+
+        <div class="">
+            <button id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+            <div class="w3-container w3-center">
+                <h1 class="">Fantasy Premier League Assistant Manager</h1>
+                <br>
+            </div>
+        </div>
+
+        <!-- flash messaging -->
+        <div class="w3-container">
+            {% for msg in get_flashed_messages() %}
+            <div class="w3-panel w3-green w3-display-container"><span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <h3>{{ msg }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- main content -->
+        <div class="w3-display-container">
+            <img src="\static\img\misc\background-img-inside-stadium.png" alt="OOPS" style="width:100%"> {% block content %}{% endblock %}
+        </div>
+
+    </div>
+
+    <!-- footer content -->
+    <div class="w3-bottom w3-lavender">
+        .
+    </div>
+
+    <!-- side navigation scripts -->
+    <script>
+        function w3_open() {
+            document.getElementById("main").style.marginLeft = "15%";
+            document.getElementById("mySidebar").style.width = "15%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
+        }
+
+        function w3_close() {
+            document.getElementById("main").style.marginLeft = "0%";
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("openNav").style.display = "inline-block";
+        }
+    </script>
+</body>
+
+</html>

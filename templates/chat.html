@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{% block title %}{{ player.team_name }}{% endblock %}</title>
+</head>
+
+<body class="">
+    <style>
+        A {
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- navigation side panel and links -->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <br>
+        <a href="/logout" class="w3-bar-item w3-button w3-text-blue">Logout</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">home</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">players</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">squad analysis</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">league table</a>
+        <a href="#" class="w3-bar-item w3-button w3-text-blue">awards</a>
+    </div>
+
+    <!-- main content -->
+    <div id="main">
+
+        <!-- img and team name -->
+        <div class="">
+            <button id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+            <div class="w3-center">
+                <h5>Fantasy Premier League Assistant Manager</h5>
+            </div>
+            <div class="w3-display-container w3-center">
+                <img src="\static\img\misc\assistant-manager-users-backround-img.png" alt="oops" style="max-height: 200px; width: 100%;">
+                <div class="w3-display-bottommiddle">
+                    <h2 class="w3-text-white w3-padding">{{ player.team_name }} Chat</h2>
+                </div>
+                <div class="w3-display-bottomleft" style="margin-left: 60px;">
+                    <a class="" href="/user/{{player.id}}">
+                        <h5 class="w3-text-white w3-padding">home</h5>
+                    </a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <!-- flash messaging -->
+        <div class="w3-container">
+            {% for msg in get_flashed_messages() %}
+            <div class="w3-panel w3-green w3-display-container"><span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <h3>{{ msg }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- chat -->
+        <div class="w3-margin">
+            <div>
+                <b>{{ team['classic_league']['league']['name'] }}</b>
+            </div>
+            <div>Start a chat with a league manager</div>
+            <hr>
+            <div>
+                {% for player in team['classic_league']['standings']['results'] %}
+                <div class="w3-btn w3-ripple w3-border w3-round">
+                    <div>{{player['player_name']}}</div>
+                </div>
+                {% endfor %}
+                <div class="w3-btn w3-ripple w3-border w3-round">
+                    <div>group chat</div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+    </div>
+
+    <!-- side navigation scripts -->
+    <script>
+        function w3_open() {
+            document.getElementById("main").style.marginLeft = "15%";
+            document.getElementById("mySidebar").style.width = "15%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
+        }
+
+        function w3_close() {
+            document.getElementById("main").style.marginLeft = "0%";
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("openNav").style.display = "inline-block";
+        }
+    </script>
+</body>
+
+</html>

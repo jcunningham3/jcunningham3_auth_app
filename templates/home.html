@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}FPLAS HOME{% endblock %}
+{% block content %}
+<style>
+.middle-content {
+    width: 90%;
+}
+.subcontent {
+    width: 100%;
+    color: white;
+}
+</style>
+
+<div class="middle-content w3-display-topmiddle">
+
+    <div class="w3-row w3-center w3-margin">
+
+        <div class="w3-col w3-half">
+            <a href="https://fantasy.premierleague.com/the-scout">
+                <div class="subcontent w3-btn w3-ripple">
+                    <h3>The Scout</h3>
+                </div>
+            </a>
+        </div>
+
+        <div class="w3-col w3-half">
+            <a href="https://fantasy.premierleague.com/">
+                <div class="subcontent w3-btn w3-ripple">
+                    <h3>Fantasy</h3>
+                    <h3>Premier League</h3>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="middle-content w3-display-middle">
+
+    <div class="subcontent w3-center w3-margin">
+        <a href="/logon">
+            <div class="subcontent w3-btn w3-ripple">
+                <h3 class="w3-padding">Assistant Manager's Desk</h3>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
